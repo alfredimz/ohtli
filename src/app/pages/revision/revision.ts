@@ -59,7 +59,7 @@ import { ButtonComponent } from '../../shared/ui/button';
   `,
   styles: [`
     @use 'styles/tokens' as *;
-    .page { padding: $space-5 0; max-width: 760px; }
+    .page { padding-block: $space-5; max-width: 760px; }
     .grid { display: grid; gap: $space-3; grid-template-columns: 1fr; margin-bottom: $space-4; @include md { grid-template-columns: 1fr 1fr; } }
     .card { background: $white; border: 1px solid $color-border; border-radius: $rounded; padding: $space-3; }
     .card h3 { font-size: $font-size-body; color: $color-text-secondary; text-transform: uppercase; letter-spacing: .04em; margin-bottom: $space-1; }
@@ -67,8 +67,14 @@ import { ButtonComponent } from '../../shared/ui/button';
     .muted { color: $color-text-secondary; margin: $space-1 0 0; font-size: $font-size-body; }
     .total { display: flex; justify-content: space-between; align-items: center; padding: $space-3 $space-4;
              background: $dimgray-light-4; border-radius: $rounded; margin-bottom: $space-4; }
-    .total strong { font-size: $font-size-hero; color: $purple-regular; }
+    .total strong { font-size: $font-size-data; color: $purple-regular; @include md { font-size: $font-size-hero; } }
     .actions { display: flex; gap: $space-3; justify-content: flex-end; flex-wrap: wrap; }
+
+    /* <576px: acciones apiladas a lo ancho, CTA primero (patrón mobile DEBOX). */
+    @include xs-only {
+      .actions { flex-direction: column-reverse; }
+      .actions app-button { display: grid; }
+    }
   `],
 })
 export class RevisionPage {

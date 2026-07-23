@@ -34,9 +34,13 @@ import { ButtonComponent } from '../../shared/ui/button';
   `,
   styles: [`
     @use 'styles/tokens' as *;
-    .page { padding: $space-5 0; max-width: 620px; }
+    .page { padding-block: $space-5; max-width: 620px; }
     .bar { display: flex; gap: $space-2; margin: $space-3 0; }
     .bar .input { flex: 1; }
+    @include xs-only {
+      .bar { flex-direction: column; }
+      .bar app-button { display: grid; }
+    }
     .samples { font-size: $font-size-micro; color: $color-text-secondary; }
     .link { background: none; border: 0; color: $color-link; cursor: pointer; font: inherit; padding: 0 $space-1; text-decoration: underline; }
     .state { padding: $space-4; border-radius: $rounded; margin-bottom: $space-3; }

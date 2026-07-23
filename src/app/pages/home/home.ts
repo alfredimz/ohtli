@@ -31,7 +31,7 @@ import { CotizarWidgetComponent } from '../../shared/components/cotizar-widget';
   styles: [`
     @use 'styles/tokens' as *;
 
-    .hero { background: linear-gradient(160deg, $dimgray-light-4 0%, $white 60%); padding: $space-6 0; }
+    .hero { background: linear-gradient(160deg, $dimgray-light-4 0%, $white 60%); padding: $space-5 0; @include md { padding: $space-6 0; } }
     .hero__inner { display: grid; gap: $space-6; align-items: center; grid-template-columns: 1fr; @include lg { grid-template-columns: 1.1fr .9fr; } }
     .hero__lead { font-size: $font-size-section; color: $color-text; max-width: 46ch; }
     .hero__points { padding-left: $space-3; color: $color-text-secondary; }

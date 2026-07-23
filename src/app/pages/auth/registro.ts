@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { ButtonComponent } from '../../shared/ui/button';
@@ -18,20 +18,26 @@ import { ButtonComponent } from '../../shared/ui/button';
       <div class="card">
         @if (!registered()) {
           <h2>Crear cuenta</h2>
-          <form (ngSubmit)="submit()" #f="ngForm">
+          <form (ngSubmit)="submit(f)" #f="ngForm" novalidate>
             <div class="field">
               <label class="field__label" for="name">Nombre</label>
-              <input id="name" class="input" name="name" required [(ngModel)]="name" />
+              <input id="name" class="input" name="name" required #nameM="ngModel"
+                     [class.is-error]="showError(nameM)" [(ngModel)]="name" />
+              @if (showError(nameM)) { <span class="field__error">¿Cómo te llamas?</span> }
             </div>
             <div class="field">
               <label class="field__label" for="email">Correo</label>
-              <input id="email" class="input" name="email" type="email" required [(ngModel)]="email" />
+              <input id="email" class="input" name="email" type="email" required email #emailM="ngModel"
+                     [class.is-error]="showError(emailM)" [(ngModel)]="email" />
+              @if (showError(emailM)) { <span class="field__error">Escribe un correo válido.</span> }
             </div>
             <div class="field">
               <label class="field__label" for="pass">Contraseña</label>
-              <input id="pass" class="input" name="pass" type="password" required minlength="6" [(ngModel)]="password" />
+              <input id="pass" class="input" name="pass" type="password" required minlength="6" #passM="ngModel"
+                     [class.is-error]="showError(passM)" [(ngModel)]="password" />
+              @if (showError(passM)) { <span class="field__error">Mínimo 6 caracteres.</span> }
             </div>
-            <app-button type="submit" [block]="true" [disabled]="f.invalid || loading()">
+            <app-button type="submit" [block]="true" [disabled]="loading()">
               {{ loading() ? 'Creando…' : 'Crear cuenta' }}
             </app-button>
           </form>
@@ -53,7 +59,7 @@ import { ButtonComponent } from '../../shared/ui/button';
   `,
   styles: [`
     @use 'styles/tokens' as *;
-    .page { padding: $space-6 0; max-width: 440px; }
+    .page { padding-block: $space-6; max-width: 440px; }
     .card { background: $white; border: 1px solid $color-border; border-radius: $rounded; padding: $space-5; }
     .lead { color: $color-text-secondary; }
     .alt { margin-top: $space-3; font-size: $font-size-body; color: $color-text-secondary; }
@@ -69,8 +75,19 @@ export class RegistroPage {
   readonly loading = signal(false);
   readonly registered = signal(false);
   readonly verified = signal(false);
+  readonly attempted = signal(false);
 
-  submit(): void {
+  /** Un campo enseña su error si es inválido y ya fue tocado o hubo intento de envío. */
+  showError(ctrl: { invalid: boolean | null; touched: boolean | null }): boolean {
+    return !!ctrl.invalid && (!!ctrl.touched || this.attempted());
+  }
+
+  submit(f: NgForm): void {
+    this.attempted.set(true);
+    if (f.invalid) {
+      f.form.markAllAsTouched();
+      return;
+    }
     this.loading.set(true);
     this.auth.register(this.name, this.email, this.password).subscribe(() => {
       this.loading.set(false);

@@ -1,42 +1,49 @@
-import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import pedidosData from '../../core/mock-data/pedidos.json';
 import { AuthService } from '../../core/services/auth.service';
 import {
   SORT_OPTIONS, SortKey, downloadFile, paginate, shipmentsToCsv, sortShipments,
 } from '../../core/services/list-utils';
-import { ShipmentService, ShipmentSummary } from '../../core/services/shipment.service';
+import { ShipmentSummary } from '../../core/services/shipment.service';
 import { BadgeComponent } from '../../shared/ui/badge';
 import { ButtonComponent } from '../../shared/ui/button';
 
+/** Pedido global visto por el administrador (envío + cliente). */
+interface Pedido extends ShipmentSummary {
+  client: string;
+}
+
+const STATUS_LABEL: Record<ShipmentSummary['status'], string> = {
+  recoleccion: 'En recolección',
+  en_camino: 'En camino',
+  en_reparto: 'En reparto',
+  entregado: 'Entregado',
+};
+
 /**
- * Historial de envíos del usuario (requiere sesión). Incluye la barra
- * Ordenar · elementos por página · Descargar CSV rescatada del prototipo
- * original (deuda de diseño detectada en la Act. 2).
+ * Pedidos para administradores (flujo 11). Lista global de pedidos de todos
+ * los clientes (mock) con la barra Ordenar · Por página · Descargar CSV y
+ * cambio de estatus por pedido. Acceso solo con rol admin (correo `admin@…`).
  */
 @Component({
-  selector: 'app-mis-envios',
+  selector: 'app-admin-pedidos',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CurrencyPipe, DatePipe, RouterLink, BadgeComponent, ButtonComponent],
   template: `
     <section class="container page">
-      <header class="top">
-        <h2>Mis envíos</h2>
-        @if (auth.isAuthenticated() && shipments().length) {
-          <a routerLink="/buscar" class="search-link">Búsqueda avanzada</a>
-        }
-      </header>
+      <h2>Pedidos <span class="tag">Administrador</span></h2>
 
-      @if (!auth.isAuthenticated()) {
+      @if (!auth.isAdmin()) {
         <div class="gate">
-          <p>Inicia sesión para ver tu historial de envíos.</p>
+          <p>Esta sección es solo para administradores.</p>
+          <p class="hint">Demo: inicia sesión con un correo <strong>admin&#64;…</strong> (p. ej. admin&#64;ohtli.mx) para activar el rol.</p>
           <a routerLink="/auth/login"><app-button variant="secondary">Iniciar sesión</app-button></a>
         </div>
-      } @else if (loading()) {
-        <div class="state">Cargando tus envíos…</div>
-      } @else if (shipments().length === 0) {
-        <div class="state">Aún no tienes envíos. <a routerLink="/">Cotiza el primero</a>.</div>
       } @else {
+        <p class="sub">{{ pedidos().length }} pedidos de todos los clientes</p>
+
         <div class="toolbar">
           <label class="tb">
             <span class="tb__label">Ordenar</span>
@@ -56,19 +63,28 @@ import { ButtonComponent } from '../../shared/ui/button';
         </div>
 
         <div class="list">
-          @for (s of paged().items; track s.guide) {
-            <a class="item" [routerLink]="['/envios', s.guide]">
+          @for (p of paged().items; track p.guide) {
+            <article class="item">
               <div class="item__main">
-                <span class="item__guide">Guía {{ s.guide }}</span>
-                <span class="item__meta">{{ s.carrierName }} · {{ s.serviceLabel }} → {{ s.destinationCity }}</span>
-                <span class="item__date">{{ s.createdAt | date:'mediumDate' }}</span>
+                <span class="item__guide">Guía {{ p.guide }}</span>
+                <span class="item__client">{{ p.client }}</span>
+                <span class="item__meta">{{ p.carrierName }} · {{ p.serviceLabel }} → {{ p.destinationCity }}</span>
+                <span class="item__date">{{ p.createdAt | date:'mediumDate' }}</span>
               </div>
               <div class="item__side">
-                <app-badge [variant]="s.status === 'entregado' ? 'success' : 'info'">{{ label(s.status) }}</app-badge>
-                <span class="item__total">{{ s.total | currency:'MXN':'symbol-narrow' }}</span>
-                <span class="item__track">Ver detalle</span>
+                <app-badge [variant]="p.status === 'entregado' ? 'success' : 'info'">{{ label(p.status) }}</app-badge>
+                <span class="item__total">{{ p.total | currency:'MXN':'symbol-narrow' }}</span>
+                <label class="status">
+                  <span class="tb__label">Cambiar estatus</span>
+                  <select class="select" [value]="p.status" (change)="onStatus(p.guide, $event)">
+                    <option value="recoleccion">En recolección</option>
+                    <option value="en_camino">En camino</option>
+                    <option value="en_reparto">En reparto</option>
+                    <option value="entregado">Entregado</option>
+                  </select>
+                </label>
               </div>
-            </a>
+            </article>
           }
         </div>
 
@@ -84,33 +100,34 @@ import { ButtonComponent } from '../../shared/ui/button';
   `,
   styles: [`
     @use 'styles/tokens' as *;
-    .page { padding-block: $space-5; max-width: 820px; }
-    .top { display: flex; justify-content: space-between; align-items: baseline; gap: $space-3; flex-wrap: wrap; }
-    .search-link { font-weight: $font-weight-semibold; }
+    .page { padding-block: $space-5; max-width: 860px; }
+    .tag { font-size: $font-size-micro; background: $orange-dark; color: $white; border-radius: $rounded-full;
+           padding: 2px $space-2; vertical-align: middle; letter-spacing: .04em; text-transform: uppercase; }
+    .sub { color: $color-text-secondary; margin: $space-2 0 0; }
     .gate { background: $dimgray-light-1; border-radius: $rounded; padding: $space-5; text-align: center; }
-    .gate p { margin-bottom: $space-3; }
-    .state { padding: $space-5; text-align: center; color: $color-text-secondary; }
+    .gate p { margin-bottom: $space-2; }
+    .gate .hint { color: $color-text-secondary; font-size: $font-size-body; margin-bottom: $space-3; }
 
     .toolbar { display: flex; align-items: end; gap: $space-3; margin: $space-3 0; flex-wrap: wrap; }
     .tb { display: flex; flex-direction: column; gap: $space-1; }
     .tb__label { font-size: $font-size-micro; color: $color-text-secondary; font-weight: $font-weight-semibold; }
-    .toolbar .select { width: auto; }
+    .toolbar .select, .status .select { width: auto; }
     .download { margin-left: auto; background: none; border: 1px solid $color-border; border-radius: $rounded-sm;
                 color: $purple-regular; font-family: inherit; font-weight: $font-weight-semibold;
                 padding: 10px $space-3; cursor: pointer; }
     .download:hover { background: $dimgray-light-4; }
 
     .list { display: flex; flex-direction: column; gap: $space-3; }
-    .item { display: flex; justify-content: space-between; align-items: center; gap: $space-3; color: inherit;
-            background: $white; border: 1px solid $color-border; border-radius: $rounded; padding: $space-3; flex-wrap: wrap; }
-    .item:hover { text-decoration: none; border-color: $purple-light; box-shadow: $shadow-sm; }
+    .item { display: flex; justify-content: space-between; align-items: center; gap: $space-3; flex-wrap: wrap;
+            background: $white; border: 1px solid $color-border; border-radius: $rounded; padding: $space-3; }
     .item__main { display: flex; flex-direction: column; }
     .item__guide { font-weight: $font-weight-black; color: $purple-regular; }
+    .item__client { font-weight: $font-weight-semibold; }
     .item__meta { color: $color-text-secondary; font-size: $font-size-body; }
     .item__date { font-size: $font-size-micro; color: $color-text-disabled; }
-    .item__side { display: flex; align-items: center; gap: $space-3; }
+    .item__side { display: flex; align-items: center; gap: $space-3; flex-wrap: wrap; }
     .item__total { font-weight: $font-weight-black; }
-    .item__track { color: $color-link; font-size: $font-size-body; }
+    .status { display: flex; flex-direction: column; gap: $space-1; }
 
     .pager { display: flex; justify-content: center; align-items: center; gap: $space-3; margin-top: $space-4;
              color: $color-text-secondary; font-size: $font-size-body; }
@@ -118,7 +135,6 @@ import { ButtonComponent } from '../../shared/ui/button';
                   font-family: inherit; color: $purple-regular; padding: $space-2 $space-3; }
     .pager__btn:disabled { color: $color-text-disabled; cursor: not-allowed; }
 
-    /* <576px: la banda de estado/total ocupa su propia fila y la barra se apila. */
     @include xs-only {
       .item__side { width: 100%; justify-content: space-between; }
       .toolbar { align-items: stretch; }
@@ -126,32 +142,21 @@ import { ButtonComponent } from '../../shared/ui/button';
     }
   `],
 })
-export class MisEnviosPage implements OnInit {
+export class AdminPedidosPage {
   readonly auth = inject(AuthService);
-  private readonly shipmentService = inject(ShipmentService);
 
-  readonly loading = signal(true);
-  readonly shipments = signal<ShipmentSummary[]>([]);
-
+  readonly pedidos = signal<Pedido[]>(structuredClone(pedidosData) as Pedido[]);
   readonly sortOptions = SORT_OPTIONS;
   readonly sort = signal<SortKey>('date-desc');
   readonly pageSize = signal(5);
   readonly page = signal(1);
 
   readonly paged = computed(() =>
-    paginate(sortShipments(this.shipments(), this.sort()), this.page(), this.pageSize()),
+    paginate(sortShipments(this.pedidos(), this.sort()) as Pedido[], this.page(), this.pageSize()),
   );
 
-  ngOnInit(): void {
-    if (!this.auth.isAuthenticated()) { this.loading.set(false); return; }
-    this.shipmentService.getMyShipments().subscribe((list) => {
-      this.shipments.set(list);
-      this.loading.set(false);
-    });
-  }
-
   label(status: ShipmentSummary['status']): string {
-    return { recoleccion: 'En recolección', en_camino: 'En camino', en_reparto: 'En reparto', entregado: 'Entregado' }[status];
+    return STATUS_LABEL[status];
   }
 
   onSort(e: Event): void {
@@ -167,8 +172,13 @@ export class MisEnviosPage implements OnInit {
   prev(): void { this.page.update((p) => p - 1); }
   next(): void { this.page.update((p) => p + 1); }
 
+  onStatus(guide: string, e: Event): void {
+    const status = (e.target as HTMLSelectElement).value as ShipmentSummary['status'];
+    this.pedidos.update((list) => list.map((p) => (p.guide === guide ? { ...p, status } : p)));
+  }
+
   downloadCsv(): void {
-    const csv = shipmentsToCsv(sortShipments(this.shipments(), this.sort()));
-    downloadFile('mis-envios-ohtli.csv', csv, 'text/csv;charset=utf-8');
+    const csv = shipmentsToCsv(sortShipments(this.pedidos(), this.sort()));
+    downloadFile('pedidos-ohtli.csv', csv, 'text/csv;charset=utf-8');
   }
 }

@@ -79,12 +79,16 @@ $shadow-md: 0 4px 16px rgba(0,0,0,.15);
 $shadow-lg: 0 8px 32px rgba(0,0,0,.20);
 
 // ---- 6. BREAKPOINTS -----------------------------------------
-$bp-sm:  375px;
+// Escala heredada del prototipo DEBOX (sistema _*Media.scss): el corte de
+// 576px separa teléfono vertical de teléfono apaisado / phablet.
+$bp-sm:  576px;
 $bp-md:  768px;
 $bp-lg:  1024px;
 $bp-xl:  1280px;
 
+@mixin sm   { @media (min-width: $bp-sm)  { @content; } }
 @mixin md   { @media (min-width: $bp-md)  { @content; } }
 @mixin lg   { @media (min-width: $bp-lg)  { @content; } }
 @mixin xl   { @media (min-width: $bp-xl)  { @content; } }
+@mixin xs-only     { @media (max-width: ($bp-sm - 1px)) { @content; } }
 @mixin mobile-only { @media (max-width: ($bp-md - 1px)) { @content; } }

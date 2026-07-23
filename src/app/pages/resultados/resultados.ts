@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuoteOption } from '../../core/models';
+import { CartService } from '../../core/services/cart.service';
 import { QuoteService } from '../../core/services/quote.service';
 import { ShipmentService } from '../../core/services/shipment.service';
 import { ProviderTableComponent } from '../../shared/components/provider-table';
@@ -20,7 +21,7 @@ import { WizardProgressComponent } from '../../shared/components/wizard-progress
       @if (loading()) {
         <div class="state">Cotizando con las paqueterías…</div>
       } @else if (options().length) {
-        <app-provider-table [options]="options()" (select)="onSelect($event)" />
+        <app-provider-table [options]="options()" (select)="onSelect($event)" (addToCart)="onAddToCart($event)" />
       } @else {
         <div class="state">No se encontraron opciones. Intenta de nuevo.</div>
       }
@@ -28,7 +29,7 @@ import { WizardProgressComponent } from '../../shared/components/wizard-progress
   `,
   styles: [`
     @use 'styles/tokens' as *;
-    .page { padding: $space-5 0; }
+    .page { padding-block: $space-5; }
     .page__sub { color: $color-text-secondary; margin-bottom: $space-4; }
     .state { padding: $space-6; text-align: center; color: $color-text-secondary; background: $dimgray-light-1; border-radius: $rounded; }
   `],
@@ -36,6 +37,7 @@ import { WizardProgressComponent } from '../../shared/components/wizard-progress
 export class ResultadosPage implements OnInit {
   private readonly quoteService = inject(QuoteService);
   private readonly shipment = inject(ShipmentService);
+  private readonly cart = inject(CartService);
   private readonly router = inject(Router);
 
   readonly loading = signal(true);
@@ -64,5 +66,28 @@ export class ResultadosPage implements OnInit {
   onSelect(option: QuoteOption): void {
     this.shipment.selectOption(option);
     this.router.navigate(['/envio/detalles']);
+  }
+
+  /**
+   * Agrega la opción al carrito (flujo «Envíos por pagar») con direcciones de
+   * demostración: en el carrito el envío puede editarse antes de pagarlo.
+   */
+  onAddToCart(option: QuoteOption): void {
+    const parcel = this.shipment.draft().parcel;
+    if (!parcel) return;
+    this.cart.add({
+      packageName: `Paquete ${parcel.weightKg} kg (${this.origin} → ${this.destination})`,
+      parcel,
+      option,
+      origin: {
+        fullName: 'Por confirmar', phone: '5500000000', street: 'Por confirmar', extNumber: 'S/N',
+        neighborhood: 'Por confirmar', zip: parcel.originZip, city: `CP ${parcel.originZip}`, state: 'MX',
+      },
+      destination: {
+        fullName: 'Por confirmar', phone: '5500000000', street: 'Por confirmar', extNumber: 'S/N',
+        neighborhood: 'Por confirmar', zip: parcel.destinationZip, city: `CP ${parcel.destinationZip}`, state: 'MX',
+      },
+    });
+    this.router.navigate(['/envios-por-pagar']);
   }
 }

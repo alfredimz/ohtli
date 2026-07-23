@@ -36,12 +36,13 @@ import { WizardProgressComponent } from '../../shared/components/wizard-progress
   `,
   styles: [`
     @use 'styles/tokens' as *;
-    .page { padding: $space-7 0; max-width: 520px; text-align: center; }
+    .page { padding-block: $space-7; max-width: 520px; text-align: center; }
     .ok img { margin-bottom: $space-3; }
     .lead { color: $color-text-secondary; }
     .guide { background: $dimgray-light-4; border-radius: $rounded; padding: $space-4; margin: $space-4 0; }
     .guide__label { display: block; font-size: $font-size-micro; color: $color-text-secondary; text-transform: uppercase; letter-spacing: .06em; }
-    .guide__num { font-size: $font-size-hero; font-weight: $font-weight-black; color: $purple-regular; letter-spacing: .04em; }
+    .guide__num { font-size: $font-size-data; font-weight: $font-weight-black; color: $purple-regular; letter-spacing: .04em;
+                  overflow-wrap: anywhere; @include md { font-size: $font-size-hero; } }
     .paid { color: $green-regular; font-weight: $font-weight-semibold; }
     .actions { display: flex; gap: $space-3; justify-content: center; flex-wrap: wrap; margin-top: $space-4; }
   `],

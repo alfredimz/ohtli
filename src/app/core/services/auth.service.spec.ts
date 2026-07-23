@@ -11,6 +11,7 @@ describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(() => {
+    localStorage.clear(); // aísla cada test de la sesión persistida
     TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
   });
@@ -51,5 +52,19 @@ describe('AuthService', () => {
     tick(600);
     service.logout();
     expect(service.isAuthenticated()).toBeFalse();
+  }));
+
+  it('la contraseña de demo error123 simula credenciales incorrectas', fakeAsync(() => {
+    let message = '';
+    service.login('ana@ohtli.mx', 'error123').subscribe({ error: (e: Error) => (message = e.message) });
+    tick(600);
+    expect(message).toContain('incorrectos');
+    expect(service.isAuthenticated()).toBeFalse();
+  }));
+
+  it('el correo admin@… activa el rol administrador', fakeAsync(() => {
+    service.login('admin@ohtli.mx', 'secreto').subscribe();
+    tick(600);
+    expect(service.isAdmin()).toBeTrue();
   }));
 });

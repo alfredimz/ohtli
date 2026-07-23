@@ -38,6 +38,7 @@ import { BadgeComponent } from '../ui/badge';
 
           <div class="pt__action">
             <app-button variant="primary" (pressed)="select.emit(opt)">Seleccionar</app-button>
+            <button type="button" class="pt__cart" (click)="addToCart.emit(opt)">Al carrito</button>
           </div>
         </article>
       }
@@ -65,9 +66,22 @@ import { BadgeComponent } from '../ui/badge';
     .pt__price { display: flex; flex-direction: column; gap: 2px; }
     .pt__list { font-size: $font-size-micro; color: $color-text-secondary; text-decoration: line-through; }
     .pt__ohtli { font-size: $font-size-data; font-weight: $font-weight-black; color: $color-text; }
+
+    .pt__action { display: flex; flex-direction: column; gap: $space-1; align-items: stretch; }
+    .pt__cart { background: none; border: 0; color: $color-link; cursor: pointer; font: inherit;
+                font-size: $font-size-micro; text-decoration: underline; padding: 0; }
+
+    /* Modo tarjeta (<768px): precio en línea base compartida y CTA a lo ancho,
+       como las tarjetas apiladas del prototipo mobile. */
+    @include mobile-only {
+      .pt__price { flex-direction: row; align-items: baseline; gap: $space-2; flex-wrap: wrap; }
+      .pt__action app-button { display: grid; }
+    }
   `],
 })
 export class ProviderTableComponent {
   readonly options = input.required<QuoteOption[]>();
   readonly select = output<QuoteOption>();
+  /** Agrega la opción al carrito de envíos por pagar (flujo 06). */
+  readonly addToCart = output<QuoteOption>();
 }

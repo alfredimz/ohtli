@@ -37,9 +37,12 @@ body {
 }
 
 h1, h2, h3, h4 { margin: 0; font-weight: $font-weight-black; color: $purple-regular; line-height: 1.25; }
-h1 { font-size: $font-size-hero; }
-h2 { font-size: $font-size-screen; }
-h3 { font-size: $font-size-card; }
+
+/* Escala tipográfica responsive (comportamiento heredado de _fontsMedia.scss
+   de DEBOX): los encabezados reducen un escalón por debajo de 768px. */
+h1 { font-size: $font-size-screen; @include md { font-size: $font-size-hero; } }
+h2 { font-size: $font-size-data;   @include md { font-size: $font-size-screen; } }
+h3 { font-size: $font-size-section; @include md { font-size: $font-size-card; } }
 
 a { color: $color-link; text-decoration: none; }
 a:hover { text-decoration: underline; }

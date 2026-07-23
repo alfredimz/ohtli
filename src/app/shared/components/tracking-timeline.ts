@@ -42,8 +42,8 @@ const STATUS_LABEL: Record<TrackingInfo['status'], string> = {
   styles: [`
     @use 'styles/tokens' as *;
 
-    .tt { background: $white; border: 1px solid $color-border; border-radius: $rounded; padding: $space-4; }
-    .tt__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: $space-4; }
+    .tt { background: $white; border: 1px solid $color-border; border-radius: $rounded; padding: $space-3; @include md { padding: $space-4; } }
+    .tt__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: $space-4; flex-wrap: wrap; gap: $space-2; }
     .tt__guide { display: block; font-weight: $font-weight-black; color: $purple-regular; font-size: $font-size-card; }
     .tt__carrier { font-size: $font-size-body; color: $color-text-secondary; }
 

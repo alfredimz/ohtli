@@ -34,6 +34,7 @@ describe('ShipmentService', () => {
   };
 
   beforeEach(() => {
+    localStorage.clear(); // aísla cada test del borrador persistido
     TestBed.configureTestingModule({});
     service = TestBed.inject(ShipmentService);
   });

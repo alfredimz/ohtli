@@ -41,6 +41,16 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
     }
     .wp__label { font-weight: $font-weight-semibold; }
 
+    /* En teléfonos verticales (<576px) las 5 etiquetas no caben sin encimarse:
+       se muestran solo los círculos numerados y la etiqueta del paso activo. */
+    @include xs-only {
+      .wp { gap: $space-1; }
+      .wp__label { display: none; }
+      .wp__step.is-active .wp__label { display: block; }
+      .wp__dot { width: 28px; height: 28px; }
+      .wp__step::before { top: 13px; }
+    }
+
     .wp__step.is-active { color: $purple-regular; }
     .wp__step.is-active .wp__dot { background: $purple-regular; }
     .wp__step.is-done { color: $green-regular; }

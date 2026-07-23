@@ -1,0 +1,10 @@
+[
+  { "guide": "1234567890", "client": "Ana López", "carrierName": "Redpack", "serviceLabel": "Terrestre", "destinationCity": "Querétaro, QRO", "total": 78.32, "createdAt": "2026-06-26T08:30:00", "status": "en_camino" },
+  { "guide": "9988776655", "client": "Ana López", "carrierName": "FedEx", "serviceLabel": "Express", "destinationCity": "Monterrey, NL", "total": 200.90, "createdAt": "2026-06-24T09:10:00", "status": "entregado" },
+  { "guide": "4455667788", "client": "Ana López", "carrierName": "DHL", "serviceLabel": "Estándar", "destinationCity": "Mérida, YUC", "total": 141.96, "createdAt": "2026-06-20T16:00:00", "status": "entregado" },
+  { "guide": "7712003948", "client": "Comercial ABC SA de CV", "carrierName": "iVoy", "serviceLabel": "Mismo día", "destinationCity": "CDMX", "total": 107.10, "createdAt": "2026-07-21T10:05:00", "status": "en_reparto" },
+  { "guide": "5530998812", "client": "Tienda Kumo", "carrierName": "Redpack", "serviceLabel": "Express", "destinationCity": "Guadalajara, JAL", "total": 136.74, "createdAt": "2026-07-20T13:40:00", "status": "en_camino" },
+  { "guide": "8845120067", "client": "Luis Pérez", "carrierName": "DHL", "serviceLabel": "Express 12:00", "destinationCity": "Puebla, PUE", "total": 231.20, "createdAt": "2026-07-19T09:00:00", "status": "recoleccion" },
+  { "guide": "2210453399", "client": "Tienda Kumo", "carrierName": "FedEx", "serviceLabel": "Estándar", "destinationCity": "Tijuana, BC", "total": 123.25, "createdAt": "2026-07-15T17:25:00", "status": "entregado" },
+  { "guide": "6633887741", "client": "María Chan", "carrierName": "Redpack", "serviceLabel": "Terrestre", "destinationCity": "Cancún, QR", "total": 95.60, "createdAt": "2026-07-12T11:15:00", "status": "entregado" }
+]

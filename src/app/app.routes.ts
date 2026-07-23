@@ -68,12 +68,47 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/mis-envios/mis-envios').then((m) => m.MisEnviosPage),
     title: 'OHTLI · Mis envíos',
   },
+  {
+    path: 'envios/:guide',
+    loadComponent: () => import('./pages/envio-detalle/envio-detalle').then((m) => m.EnvioDetallePage),
+    title: 'OHTLI · Detalle del envío',
+  },
+  {
+    path: 'buscar',
+    loadComponent: () => import('./pages/buscar/buscar').then((m) => m.BuscarPage),
+    title: 'OHTLI · Buscar envíos',
+  },
+  {
+    path: 'envios-por-pagar',
+    loadComponent: () => import('./pages/carrito/carrito').then((m) => m.CarritoPage),
+    title: 'OHTLI · Envíos por pagar',
+  },
+  {
+    path: 'admin/pedidos',
+    loadComponent: () => import('./pages/admin-pedidos/admin-pedidos').then((m) => m.AdminPedidosPage),
+    title: 'OHTLI · Pedidos (administrador)',
+  },
+  {
+    path: 'mis-datos',
+    loadComponent: () => import('./pages/mis-datos/mis-datos').then((m) => m.MisDatosPage),
+    title: 'OHTLI · Mis datos',
+  },
 
-  // ---- Ayuda ----
+  // ---- Ayuda e información ----
   {
     path: 'ayuda/faq',
     loadComponent: () => import('./pages/faq/faq').then((m) => m.FaqPage),
     title: 'OHTLI · Preguntas frecuentes',
+  },
+  {
+    path: 'contacto',
+    loadComponent: () => import('./pages/contacto/contacto').then((m) => m.ContactoPage),
+    title: 'OHTLI · Contacto',
+  },
+  {
+    path: 'terminos',
+    loadComponent: () => import('./pages/terminos/terminos').then((m) => m.TerminosPage),
+    title: 'OHTLI · Términos y condiciones',
   },
 
   { path: '**', redirectTo: '' },

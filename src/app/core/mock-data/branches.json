@@ -1,0 +1,7 @@
+[
+  { "id": "suc-cdmx-centro", "name": "OHTLI Centro CDMX", "street": "Av. 5 de Mayo", "extNumber": "32", "neighborhood": "Centro Histórico", "zip": "06000", "city": "Cuauhtémoc", "state": "CDMX", "schedule": "L-V 9:00–19:00 · S 9:00–14:00" },
+  { "id": "suc-cdmx-sur", "name": "OHTLI Coyoacán", "street": "Av. Miguel Ángel de Quevedo", "extNumber": "687", "neighborhood": "Romero de Terreros", "zip": "04310", "city": "Coyoacán", "state": "CDMX", "schedule": "L-V 9:00–19:00" },
+  { "id": "suc-mty", "name": "OHTLI Monterrey Centro", "street": "Av. Padre Mier", "extNumber": "210", "neighborhood": "Centro", "zip": "64000", "city": "Monterrey", "state": "Nuevo León", "schedule": "L-V 9:00–19:00 · S 9:00–14:00" },
+  { "id": "suc-gdl", "name": "OHTLI Guadalajara", "street": "Av. Juárez", "extNumber": "975", "neighborhood": "Centro", "zip": "44100", "city": "Guadalajara", "state": "Jalisco", "schedule": "L-V 9:00–19:00" },
+  { "id": "suc-qro", "name": "OHTLI Querétaro", "street": "Av. Constituyentes", "extNumber": "59", "neighborhood": "Centro Sur", "zip": "76000", "city": "Querétaro", "state": "Querétaro", "schedule": "L-V 9:00–18:00" }
+]

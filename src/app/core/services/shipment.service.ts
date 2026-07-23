@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators';
 import shipmentsData from '../mock-data/shipments.json';
 import { Address, ParcelInput, QuoteOption, Shipment, ShipmentDraft } from '../models';
 import { mockResponse } from './mock-http';
+import { loadState, saveState } from './storage';
 
 const EMPTY_DRAFT: ShipmentDraft = {
   parcel: null,
@@ -34,8 +35,10 @@ export interface ShipmentSummary {
  */
 @Injectable({ providedIn: 'root' })
 export class ShipmentService {
-  private readonly draftSig = signal<ShipmentDraft>({ ...EMPTY_DRAFT });
-  private readonly lastResultSig = signal<Shipment | null>(null);
+  // Ambos estados se rehidratan de localStorage: recargar la página no pierde
+  // el envío en curso ni la confirmación recién generada.
+  private readonly draftSig = signal<ShipmentDraft>(loadState<ShipmentDraft>('draft') ?? { ...EMPTY_DRAFT });
+  private readonly lastResultSig = signal<Shipment | null>(loadState<Shipment>('lastResult'));
 
   /** Borrador reactivo de solo lectura. */
   readonly draft = this.draftSig.asReadonly();
@@ -51,26 +54,36 @@ export class ShipmentService {
 
   setParcel(parcel: ParcelInput): void {
     this.draftSig.update((d) => ({ ...d, parcel }));
+    this.persistDraft();
   }
 
   selectOption(option: QuoteOption): void {
     this.draftSig.update((d) => ({ ...d, selectedOption: option }));
+    this.persistDraft();
   }
 
   setPackageName(name: string): void {
     this.draftSig.update((d) => ({ ...d, packageName: name }));
+    this.persistDraft();
   }
 
   setOrigin(origin: Address): void {
     this.draftSig.update((d) => ({ ...d, origin }));
+    this.persistDraft();
   }
 
   setDestination(destination: Address): void {
     this.draftSig.update((d) => ({ ...d, destination }));
+    this.persistDraft();
   }
 
   reset(): void {
     this.draftSig.set({ ...EMPTY_DRAFT });
+    this.persistDraft();
+  }
+
+  private persistDraft(): void {
+    saveState('draft', this.draftSig());
   }
 
   /** Simula la contratación del envío y devuelve la guía generada. */
@@ -90,6 +103,7 @@ export class ShipmentService {
     return mockResponse(shipment, 900).pipe(
       tap((result) => {
         this.lastResultSig.set(result);
+        saveState('lastResult', result);
         this.reset();
       }),
     );

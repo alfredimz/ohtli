@@ -21,7 +21,7 @@ interface QA { q: string; a: string; }
   `,
   styles: [`
     @use 'styles/tokens' as *;
-    .page { padding: $space-5 0; max-width: 720px; }
+    .page { padding-block: $space-5; max-width: 720px; }
     .faq { display: flex; flex-direction: column; gap: $space-2; margin-top: $space-4; }
     .faq__item { background: $white; border: 1px solid $color-border; border-radius: $rounded; padding: $space-3 $space-4; }
     summary { cursor: pointer; font-weight: $font-weight-black; color: $purple-regular; }
