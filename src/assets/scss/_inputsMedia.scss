@@ -1,0 +1,70 @@
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {}
+
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {}
+
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+
+    .form-input-style {
+        &.form-input-xs-style {
+            label {
+                font-size: 20px;
+                margin-bottom: 8px;
+
+            }
+
+            input {
+                height: 56px;
+                font-size: 20px;
+
+            }
+        }
+    }
+
+    .form-radio-style {
+        &.form-radio-xs-style {
+            label {
+                font-size: 20px;
+                font-family: $lato-regular;
+                color: $black;
+                font-weight: normal;
+            }
+
+            .custom-control-label::before{
+                width: 1.5rem;
+                height: 1.5rem;                
+            }
+
+            .custom-radio .custom-control-input:checked ~ .custom-control-label::after{
+                top: 0.50rem;
+                left: -1.25rem;
+                width: 1rem;
+                height: 1rem;  
+            }
+
+        }
+    }
+
+}
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {}

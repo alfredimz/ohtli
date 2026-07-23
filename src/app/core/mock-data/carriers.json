@@ -1,0 +1,37 @@
+[
+  {
+    "id": "redpack",
+    "name": "Redpack",
+    "logo": "/assets/img/logo-redpack-normal.svg",
+    "services": [
+      { "type": "terrestre", "label": "Terrestre", "days": "3-5", "listPrice": 89, "discount": 12, "ohtliPrice": 78.32 },
+      { "type": "express", "label": "Express", "days": "1-2", "listPrice": 159, "discount": 14, "ohtliPrice": 136.74 }
+    ]
+  },
+  {
+    "id": "fedex",
+    "name": "FedEx",
+    "logo": "/assets/img/logo-fedex-normal.svg",
+    "services": [
+      { "type": "estandar", "label": "Estándar", "days": "2-3", "listPrice": 145, "discount": 15, "ohtliPrice": 123.25 },
+      { "type": "express", "label": "Express", "days": "1", "listPrice": 245, "discount": 18, "ohtliPrice": 200.90 }
+    ]
+  },
+  {
+    "id": "dhl",
+    "name": "DHL",
+    "logo": null,
+    "services": [
+      { "type": "estandar", "label": "Estándar", "days": "2-4", "listPrice": 169, "discount": 16, "ohtliPrice": 141.96 },
+      { "type": "express", "label": "Express 12:00", "days": "1", "listPrice": 289, "discount": 20, "ohtliPrice": 231.20 }
+    ]
+  },
+  {
+    "id": "ivoy",
+    "name": "iVoy",
+    "logo": null,
+    "services": [
+      { "type": "sameday", "label": "Mismo día (local)", "days": "0-1", "listPrice": 119, "discount": 10, "ohtliPrice": 107.10 }
+    ]
+  }
+]

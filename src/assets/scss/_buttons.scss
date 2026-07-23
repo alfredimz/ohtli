@@ -1,0 +1,138 @@
+.button-generic-style {
+    box-shadow: none;
+    border-radius: 3px;
+    font-family: $lato-regular;
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    font-size: 14px;
+    transition: all 0.5s;
+    
+    &.button-green {
+        background-color: $green-regular ;
+        color: $white;
+        border: none;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $green-regular ;
+            color: $white;
+            text-decoration: none;
+        }
+    }
+
+    &.button-purple {
+        background-color: $purple-strong;
+        color: $white;
+        border: $white 1px solid;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active  {
+            background-color: $purple-light ;
+            color: $white;
+            text-decoration: none;
+            border: $white 1px solid;
+        }
+    }
+
+    &.button-red {
+        background-color: $red-regular ;
+        color: $white;
+        border: none;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active  {
+            background-color: $red-regular ;
+            color: $white;
+            text-decoration: none;
+        }
+    }
+
+    &.button-orange {
+        background-color: $orange-regular ;
+        color: $black;
+        border: none;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active  {
+            background-color: $orange-regular ;
+            color: $black;
+            text-decoration: none;
+        }
+    }
+
+    &.button-gray {
+        background-color: $dimgray-light-5 ;
+        color: $black;
+        border: none;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active  {
+            background-color: $dimgray-light-5 ;
+            color: $black;
+            text-decoration: none;
+            border:none;
+            outline: none;
+        }
+    }
+
+    &.button-transparent{
+        background-color: transparent ;
+        color: $black;
+        border: none;
+        text-decoration: underline;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        &:hover,
+        &:focus,
+        &:active  {
+            text-decoration: underline;
+            background-color:transparent ;
+            color: $black;     
+            outline: none;
+            box-shadow: none;       
+        }
+    }
+
+    &.width-143{
+        width: 143px;
+    }
+
+    &.width-134{
+        width: 134px;
+    }
+
+    &.height-60{
+        height: 60px;
+    }
+
+    &.height-34{
+        height: 34px;
+    }
+
+}
+
+.ancor-without-underline{
+    text-decoration: none;
+    outline: none;
+        box-shadow: none;
+        transition: all 0.2s;
+    &:hover,&:focus,&:active{        
+        text-decoration: none;
+        outline: none;
+        box-shadow: none;
+    }
+}

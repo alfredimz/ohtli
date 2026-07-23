@@ -1,0 +1,90 @@
+// =============================================================
+// OHTLI — Design Tokens (SCSS)  ·  Sistema de diseño (Act. 2 → Act. 3)
+// Puente diseño → código. Contrastes verificados contra WCAG 2.2 AA.
+// =============================================================
+
+// ---- 1. COLOR -----------------------------------------------
+// Marca / primario
+$purple-regular: #493B77; // 9.65:1 s/blanco
+$purple-strong:  #504572; // hover/activo del primario
+$purple-light:   #645889; // decorativo
+
+// Acento / CTA
+$orange-regular: #F47C34; // SOLO relleno / fondo de botón. NUNCA texto.
+$orange-dark:    #C2410C; // 5.18:1 — naranja como TEXTO/enlace. AA
+
+// Semánticos
+$green-regular:  #049D74;
+$red-regular:    #BF0404;
+
+// Grises
+$black:           #000000;
+$gray-regular-4:  #383943; // texto principal
+$gray-regular-2:  #707070; // texto secundario
+$gray-regular-1:  #999CA8; // placeholder / deshabilitado
+$dimgray-light-5: #E1E2E6;
+$dimgray-light-3: #E8E8E8;
+$dimgray-light-6: #F2F2F2;
+$dimgray-light-1: #F7F7F7;
+$dimgray-light-4: #F0EDF5;
+$white:           #FFFFFF;
+
+// Alias de aplicación
+$color-text:            $gray-regular-4;
+$color-text-secondary:  $gray-regular-2;
+$color-text-disabled:   $gray-regular-1;
+$color-bg:              $white;
+$color-bg-section:      $dimgray-light-1;
+$color-border:          $dimgray-light-3;
+$color-success:         $green-regular;
+$color-error:           $red-regular;
+$color-cta-bg:          $orange-regular;
+$color-cta-label:       $gray-regular-4;
+$color-link:            $orange-dark;
+
+// ---- 2. TIPOGRAFÍA ------------------------------------------
+$font-family-base: 'Lato', -apple-system, system-ui, sans-serif;
+$font-weight-light:    300;
+$font-weight-regular:  400;
+$font-weight-semibold: 600;
+$font-weight-black:    800;
+
+$font-size-hero:    33px;
+$font-size-screen:  26px;
+$font-size-data:    24px;
+$font-size-card:    20px;
+$font-size-section: 18px;
+$font-size-body:    14px;
+$font-size-micro:   11px;
+
+// ---- 3. ESPACIADO (grid 8px) --------------------------------
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 16px;
+$space-4: 24px;
+$space-5: 32px;
+$space-6: 48px;
+$space-7: 64px;
+
+// ---- 4. RADIOS ----------------------------------------------
+$rounded-sm:   4px;
+$rounded:      8px;
+$rounded-lg:   12px;
+$rounded-full: 9999px;
+
+// ---- 5. SOMBRAS ---------------------------------------------
+$shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+$shadow:    0 2px 8px rgba(0,0,0,.10);
+$shadow-md: 0 4px 16px rgba(0,0,0,.15);
+$shadow-lg: 0 8px 32px rgba(0,0,0,.20);
+
+// ---- 6. BREAKPOINTS -----------------------------------------
+$bp-sm:  375px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;
+
+@mixin md   { @media (min-width: $bp-md)  { @content; } }
+@mixin lg   { @media (min-width: $bp-lg)  { @content; } }
+@mixin xl   { @media (min-width: $bp-xl)  { @content; } }
+@mixin mobile-only { @media (max-width: ($bp-md - 1px)) { @content; } }

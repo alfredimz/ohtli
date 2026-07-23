@@ -1,0 +1,77 @@
+// =============================================================
+// OHTLI — Átomos de formulario (input, select, checkbox, radio)
+// Estilos globales con estados: default / focus / error / disabled.
+// =============================================================
+@use 'styles/tokens' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  margin-bottom: $space-3;
+}
+
+.field__label {
+  font-size: $font-size-body;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+}
+
+.field__hint  { font-size: $font-size-micro; color: $color-text-secondary; }
+.field__error { font-size: $font-size-micro; color: $color-error; font-weight: $font-weight-semibold; }
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 10px $space-3;
+  font-family: $font-family-base;
+  font-size: $font-size-body;
+  color: $color-text;
+  background: $white;
+  border: 1px solid $color-border;
+  border-radius: $rounded-sm;
+  transition: border-color .15s, box-shadow .15s;
+
+  &::placeholder { color: $color-text-disabled; }
+
+  &:focus {
+    outline: none;
+    border-color: $purple-regular;
+    box-shadow: 0 0 0 3px rgba($purple-regular, .15);
+  }
+
+  &:disabled {
+    background: $dimgray-light-1;
+    color: $color-text-disabled;
+    cursor: not-allowed;
+  }
+
+  &.is-error {
+    border-color: $color-error;
+    &:focus { box-shadow: 0 0 0 3px rgba($red-regular, .15); }
+  }
+}
+
+.textarea { min-height: 88px; resize: vertical; }
+
+// ---- Checkbox & radio ----
+.choice {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  font-size: $font-size-body;
+  color: $color-text;
+  cursor: pointer;
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    width: 18px;
+    height: 18px;
+    margin: 1px 0 0;
+    accent-color: $purple-regular;
+    cursor: pointer;
+  }
+
+  &.is-disabled { color: $color-text-disabled; cursor: not-allowed; }
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "guide": "1234567890",
+    "carrier": "Redpack",
+    "status": "en_camino",
+    "events": [
+      { "date": "2026-06-26", "time": "08:30", "location": "CDMX Centro", "event": "Paquete recolectado" },
+      { "date": "2026-06-26", "time": "14:00", "location": "Centro de distribución Iztapalapa", "event": "En bodega de distribución" },
+      { "date": "2026-06-27", "time": "07:15", "location": "Querétaro, QRO", "event": "En tránsito al destino" }
+    ]
+  },
+  {
+    "guide": "9988776655",
+    "carrier": "FedEx",
+    "status": "entregado",
+    "events": [
+      { "date": "2026-06-24", "time": "09:10", "location": "Guadalajara, JAL", "event": "Paquete recolectado" },
+      { "date": "2026-06-24", "time": "20:40", "location": "Hub Aéreo GDL", "event": "En tránsito" },
+      { "date": "2026-06-25", "time": "11:05", "location": "Monterrey, NL", "event": "En reparto" },
+      { "date": "2026-06-25", "time": "15:32", "location": "Monterrey, NL", "event": "Entregado — firmó: M. López" }
+    ]
+  }
+]

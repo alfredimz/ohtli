@@ -1,0 +1,278 @@
+.modal-guia-style {
+  .modal-body {
+    padding: 29px 55px;
+
+    .close {
+      opacity: 1;
+      position: absolute;
+      top: 36px;
+      right: 38px;
+      outline: none;
+      box-shadow: none;
+
+      &:focus,
+      &:hover,
+      &:active {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .icon-close-black {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}
+
+.modal-send-style {
+  .modal-body {
+    padding: 29px 55px;
+
+    .close {
+      opacity: 1;
+      position: absolute;
+      top: 34px;
+      right: 53px;
+      outline: none;
+      box-shadow: none;
+
+      &:focus,
+      &:hover,
+      &:active {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .icon-close-black {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    .img-day-normal {
+      width: 55px;
+      height: 55px;
+    }
+
+    .table-package-style {
+      border-right: none;
+      border-left: none;
+      border-radius: 0;
+    }
+  }
+}
+
+
+.modal-details-style {
+  .modal-dialog {
+    width: 660px !important;
+  }
+
+  .modal-body {
+    padding: 0px;
+    .container-modal-steps {
+      width: 234px;
+      background-color: $dimgray-light-6;
+      padding: 14px 42px;
+
+      .logo-ohtli-normal {
+        width: 82px;
+        height: 39px;
+      }
+
+      .container-modal-forms {
+        width: 366px;
+        padding: 31px 48px;
+
+      }
+
+      .close {
+        opacity: 1;
+        position: absolute;
+        top: 34px;
+        right: 53px;
+        outline: none;
+        box-shadow: none;
+
+        &:focus,
+        &:hover,
+        &:active {
+          outline: none;
+          box-shadow: none;
+        }
+
+        .icon-close-black {
+          width: 14px;
+          height: 14px;
+        }
+      }
+
+    }
+
+  }
+}
+
+.modal-window-style{
+  .img-internet-normal{
+    width: 69px;
+    height: 78px;
+  }
+}
+
+.modal-info-style{ 
+  .modal-dialog {
+    
+    max-width: 660px!important;
+    .modal-body{
+      padding: 0;
+    }
+  }
+  .close {
+    opacity: 1;
+    position: absolute;
+    top: 34px;
+    right: 53px;
+    outline: none;
+    box-shadow: none;
+
+    &:focus,
+    &:hover,
+    &:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .icon-close-black {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+
+.section-step-gray{
+  background-color: $dimgray-light-6;
+  width: 234px;
+  padding: 14.97px 38px ;
+
+  .logo-ohtli-normal{
+    width: 82px;
+    height: 39px;
+  }
+}
+  .step-modal-styles{
+    .step-modal-content{
+      .step-circle-black{
+        width: 18px;
+        height: 18px;
+        background-color: $dimgray-light-6;
+        border-radius: 100%;
+        z-index: 2;
+        border: solid 1px $black;
+        .icon-check-white{
+          display: none;
+        }
+        &.next-step-circle{
+          background-color: $black;
+          
+        }
+        &.check-step-circle{
+          background-color: $green-regular;
+          border: 1px solid $green-regular;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .icon-check-white{
+            display: block;
+            width: 10.43px;
+            height: 7.78px;
+          }
+
+        }
+      }
+      .step-modal-text{
+        margin-left: 11px;
+
+
+      }
+
+    }
+    .step-modal-line{
+      height: 73.5px;
+      width: 1px;
+      background-color: $black;
+      margin-left: 9px;
+      transform: scaleY(1.5);
+      z-index: 1;
+    }
+  }
+
+  .section-modal-white{
+    width: 426px;
+    padding: 30px 48px 38px 48px ;
+    .form-row{
+margin-left: 0px;
+margin-right: 0px;
+    }
+  }
+
+
+
+}
+
+
+.toast {
+  position: absolute;
+  z-index: 999;
+  top: 52px;
+  right: 66px;
+  background-color: $purple-regular;
+  min-width: 315px;
+  max-width: max-content;
+  border-radius: 3px;
+
+
+
+  .toast-header {
+    height: 54px;
+    background-color: transparent;
+    padding: 0px;
+    font-size: 14px;
+    color: $white;
+    padding-left: 23px;
+    padding-right: 8px;
+    font-family: $lato-regular;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .icon-check-white {
+      height: 8.82px;
+      width: 11.52px;
+    }
+
+    .close {
+      color: $white;
+      font-size: 20px;
+      font-weight: normal;
+      padding: 10px;
+      margin: 0px;
+      opacity: 1;
+      text-shadow: none;
+      outline: none;
+      box-shadow: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .toast-body {
+    display: none;
+  }
+}
+

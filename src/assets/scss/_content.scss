@@ -1,0 +1,407 @@
+.logo-ohtli-normal {
+    width: 135.8px;
+    height: 64.03px;
+}
+
+.logo-ohtli-nav {
+    width: 75px;
+    height: 36px;
+}
+
+.content-side-quote {
+    padding: 47.97px 55px 23px 55px;
+}
+
+.content-nav-styles {
+    border-bottom: 1px solid $dimgray-light-3;
+    background-color: $white;
+    position: sticky;
+    top: -1px;
+    z-index: 1;
+
+    .menu-content-xs {
+        border-top: 1px solid $dimgray-light-3;
+    }
+
+    .icon-send-purple {
+        height: 16px;
+        width: 16px;
+    }
+
+    .icon-search-purple {
+        height: 15.99px;
+        width: 16px;
+    }
+
+    .icon-shop-purple {
+        height: 15.08px;
+        width: 16.96px;
+    }
+
+    .icon-menu-purple {
+        height: 14.82px;
+        width: 12.91px;
+    }
+
+    .menu-link-style {
+        transition: all 0.2s;
+        cursor: pointer;
+        padding-top: 11px;
+        padding-bottom: 11px;
+        padding-left: 0px;
+        padding-right: 0px;
+
+        span {
+            font-size: 15px;
+            font-family: $lato-regular;
+            color: $purple-regular;
+            line-height: 1;
+            margin-top: 5px;
+        }
+
+        img {
+            filter: brightness(100%) saturate(100%) invert(0%);
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $purple-regular;
+
+            span {
+                color: $white;
+            }
+
+            img {
+                filter: brightness(0%) saturate(0%) invert(100%);
+            }
+        }
+    }
+}
+
+.content-right-style {}
+
+.content-principal-styles {
+    padding-top: 53px;
+    overflow: auto;
+    height: 100vh;
+
+    .height-100-fix{
+        height: calc(100vh - 78px);
+    }
+    
+}
+
+.menu-bar-styles {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.menu-collapse-style {
+    .card-body {
+        padding: 18px 0;
+    }
+
+    a,
+    button {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 27px;
+        padding-right: 27px;
+        text-decoration: none;
+        border-radius: 0;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-family: $lato-regular;
+        font-weight: normal;
+        font-size: 20px;
+        color: $black;
+        position: relative;
+        background: none;
+        text-decoration: none;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+
+    .icon-close-black {
+        width: 21px;
+        height: 21px;
+    }
+
+    .icon-right-black {
+
+        width: 10.27px;
+        height: 16.63px;
+    }
+}
+ 
+.menu-cotizar-style {
+    .card-body {
+        padding: 18px 0;
+    }
+
+    a,
+    button {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 27px;
+        padding-right: 27px;
+        width: 100%;
+        text-decoration: none;
+        border-radius: 0;
+        border: none;        
+        text-align: left;
+        font-family: $lato-regular;
+        font-weight: normal;
+        font-size: 20px;
+        color: $black;
+        position: relative;
+        background: none;
+        text-decoration: none;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+
+    .icon-close-black {
+        width: 21px;
+        height: 21px;
+    }
+
+    .icon-right-black {
+
+        width: 10.27px;
+        height: 16.63px;
+    }
+    button.button-close-black{
+        width: auto;
+    }
+    .title-collapse-style{
+        padding-left: 27px;
+        padding-right: 27px;
+    }
+}
+
+.collapse-search-style,.collapse-guide-style,.collapse-advance-style{
+    .card-body {
+        padding: 30px 27px 18px 5px;
+        .button-close-black {
+            display: flex;
+            align-items: center;
+            background: none;
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
+            border: none;
+    
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+    
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+
+
+.button-collapse-style {
+    .card-body {
+        padding: 11px 17px;
+    }
+}
+
+.contact-collapse-style {
+    .card-body {
+        padding: 18px 27px;
+
+        .contact-container-social {
+            display: flex;
+            justify-content: center;            
+
+            a {
+                padding: 10px;
+            }
+
+            .icon-facebook-purple {
+                height: 36px;
+                width: 19.28px;
+            }
+
+            .icon-instagram-purple {
+                width: 37px;
+                height: 37px;
+            }
+
+        }
+    }
+
+    .button-return-black {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        background: none;
+        text-decoration: none;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        font-size: 26px;
+        font-family: $lato-bold;
+        color: $black;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+
+    .button-close-black {
+        display: flex;
+        align-items: center;
+        background: none;
+        text-decoration: none;
+        outline: none;
+        box-shadow: none;
+        border: none;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+
+    .icon-close-black {
+        width: 21px;
+        height: 21px;
+    }
+
+    .icon-left-black {
+
+        width: 10.27px;
+        height: 16.63px;
+    }
+}
+
+.content-center-styles {
+    .img-promo-buenfin {
+        width: 206.54px;
+        height: 149.77px;
+    }
+
+    .img-send-normal {
+        width: 78px;
+    }
+
+    .logo-redpack-normal {
+        width: 101.43px;
+    }
+
+    .logo-fedex-normal {
+        width: 62.68px;
+    }
+
+    .img-car-normal {
+        width: 104px;
+    }
+
+    .img-24-normal {
+        width: 90px;
+    }
+
+    .img-day-normal {
+        width: 87px;
+    }
+}
+
+.title-return-style{
+
+    .button-return-black {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        background: none;
+        text-decoration: none;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        font-size: 26px;
+        font-family: $lato-bold;
+        color: $black;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+    .icon-left-black {
+
+        width: 10.27px;
+        height: 16.63px;
+    }
+}
+
+.logo-facebook-purple {
+    width: 12.99px;
+    height: 24.25px;
+}
+
+.logo-instagram-purple {
+    width: 24.93px;
+    height: 24.93px;
+}
+
+.logo-ohtli-footer {
+    width: 85.41px;
+    height: 38.9px;
+}
+

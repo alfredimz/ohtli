@@ -1,0 +1,250 @@
+.popover-contact-style {
+
+    background-color: transparent;
+    border: none;
+    max-width: 234px;
+    &.bs-popover-bottom>.arrow::after,
+    .bs-popover-auto[x-placement^=bottom]>.arrow::after {
+        border-bottom-color: $purple-strong;
+    }
+
+    .popover-body {
+        width: 234px;
+        height: 216px;
+        padding: 30px 20px 0px 20px;
+        background-color: $purple-strong;
+        box-shadow: 0px 0px 6px #00000036;
+
+        .popover-container-social {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 50px;
+            padding-right: 50px;
+
+            a {
+                padding: 10px;
+            }
+        }
+    }
+}
+
+.popover-advance-style {
+background-color: transparent;
+border: none;
+max-width: 312px;
+    &.bs-popover-bottom,
+    &.bs-popover-auto[x-placement^=bottom] {
+        margin-top: 0;
+    }
+
+    .popover-body {
+        width: 312px;
+        height: 391px;
+        padding: 23px 28px;
+        background-color: $purple-strong;
+        box-shadow: 0px 0px 6px #00000036;
+
+        .button-close-white {
+            display: flex;
+            align-items: center;
+            background: none;
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
+            border: none;
+
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: none;
+                outline: none;
+                box-shadow: none;
+            }
+
+            .icon-close-white {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+    }
+
+    .arrow {
+        display: none;
+    }
+}
+
+.popover-edit-style {
+    background-color: transparent;
+    border: none;
+    max-width: 375px;
+    &.bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^=bottom] > .arrow::after{
+        border-bottom-color: $purple-regular;
+    }
+
+    .popover-body {
+        width: 375px;
+        height: auto;
+        padding: 34px 34px 29px 34px;
+        background-color: $purple-strong;
+        border-radius: 6px ;
+        box-shadow: 0px 0px 6px #00000036;
+
+        .button-close-white {
+            display: flex;
+            align-items: center;
+            background: none;
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
+            border: none;
+
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: none;
+                outline: none;
+                box-shadow: none;
+            }
+            .icon-close-white {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+}
+
+
+.popover-delete-style {
+    background-color: transparent;
+    border: none;
+    max-width: 287px;
+    &.bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^=bottom] > .arrow::after{
+        border-bottom-color: $purple-regular;
+    }
+
+    .popover-body {
+        width: 287px;
+        height: auto;
+        padding: 15px 13px 13px 13px;
+        background-color: $purple-strong;
+        border-radius: 6px ;
+        box-shadow: 0px 0px 6px #00000036;
+
+    }
+
+}
+
+.popover-option-style {
+    background-color: transparent;
+    border: none;
+    max-width: 287px;
+    &.bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^=bottom] > .arrow::after{
+        border-bottom-color: $purple-regular;
+    }
+
+    .popover-body {
+        width: 287px;
+        height: auto;
+        padding: 15px 13px 13px 13px;
+        background-color: $purple-strong;
+        border-radius: 6px ;
+        box-shadow: 0px 0px 6px #00000036;
+
+    }
+
+}
+
+.popover-session-style {
+    background-color: transparent;
+    border: none;
+    max-width: 316px;
+    &.bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^=bottom] > .arrow::after{
+        border-bottom-color: $purple-regular;
+    }
+
+    .popover-body {
+        width: 316px;
+        height: auto;
+        padding: 37px 34px;
+        background-color: $purple-strong;
+        border-radius: 6px ;
+        box-shadow: 0px 0px 6px #00000036;
+        .button-close-white {
+            display: flex;
+            align-items: center;
+            background: none;
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
+            border: none;
+
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: none;
+                outline: none;
+                box-shadow: none;
+            }
+
+            .icon-close-white {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+    }
+
+}
+
+.popover-account-style {
+    background-color: transparent;
+    border: none;
+    max-width: 316px;
+    &.bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^=bottom] > .arrow::after{
+        border-bottom-color: $purple-regular;
+    }
+
+    .popover-body {
+        width: 316px;
+        height: auto;
+        padding: 37px 34px;
+        background-color: $purple-strong;
+        border-radius: 6px ;
+        box-shadow: 0px 0px 6px #00000036;
+        .button-close-white {
+            display: flex;
+            align-items: center;
+            background: none;
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
+            border: none;
+
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: none;
+                outline: none;
+                box-shadow: none;
+            }
+
+            .icon-close-white {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+    }
+
+}
+
+.button-popover-fake{
+    display: block!important;
+    height: 0px;
+    width: 143px;
+    background: none;
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
